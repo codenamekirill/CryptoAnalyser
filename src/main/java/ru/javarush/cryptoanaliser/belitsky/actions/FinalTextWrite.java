@@ -8,14 +8,14 @@ import java.io.IOException;
 
 public class FinalTextWrite {//метод для записи файла с изменениями
 
-    public static void finalTextWrite(String src, String dest, int key){
+    public static void finalTextWrite(String src, String dest, int key) {
         try (FileReader input = new FileReader(src)) {
             while (input.ready()) {
                 char symbol = Character.toLowerCase((char) input.read());
-                if(Alphabet.indexOf(symbol)==-1)continue;
+                if (Alphabet.indexOf(symbol) == -1) continue;
                 int index = Alphabet.indexOf(symbol);
                 try (FileWriter output = new FileWriter(dest, true)) {
-                    output.write(Roll.roll(index,key));
+                    output.write(Roll.roll(index, key));
                 }
             }
 

@@ -6,40 +6,41 @@ import java.util.List;
 
 public class Alphabet {//алфавит и разновидности блоков символов для проверок etc.
 
-    private static final List<Character> ALPHABET =  Arrays.asList( 'а', 'б', 'в',
-            'г', 'д', 'е', 'ё', 'ж', 'з', 'и','й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у',
-            'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э','ю', 'я','.', ',', '«', '»',
+    private static final List<Character> ALPHABET = Arrays.asList('а', 'б', 'в',
+            'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у',
+            'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', '.', ',', '«', '»',
             ':', '!', '?', ' ');
 
-    private static final List<Character> SYMBOLS = Arrays.asList( '.', ',', ':', '!', '?');
+    private static final List<Character> SYMBOLS = Arrays.asList('.', ',', ':', '!', '?');
 
-    private static final List<Character> LETTERS = Arrays.asList( 'а', 'б', 'в',
-            'г', 'д', 'е', 'ё', 'ж', 'з', 'и','й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у',
-            'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э','ю', 'я');
+    private static final List<Character> LETTERS = Arrays.asList('а', 'б', 'в',
+            'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у',
+            'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я');
 
 
-    private static final List <Character> OneLetterWord =Arrays.asList('в','к','о','с','у','а','и','б','ж','о','я','э');
+    private static final List<Character> OneLetterWord = Arrays.asList('в', 'к', 'о', 'с', 'у', 'а', 'и', 'б', 'ж', 'о', 'я', 'э');
 
-    public static char get(int index){
+    public static char get(int index) {
         return ALPHABET.get(index);
     }
 
-    public static int indexOf (char symbol){
+    public static int indexOf(char symbol) {
         return ALPHABET.indexOf(symbol);
     }
 
     public static boolean getOneLetterWords(char character) {
         return OneLetterWord.contains(character);
     }
-    public static int getSize(){
+
+    public static int getSize() {
         return ALPHABET.size();
-   }
+    }
 
-   public static boolean symbolsContainCheck(char character){
-       return SYMBOLS.contains(character);
-   }
+    public static boolean symbolsContainCheck(char character) {
+        return SYMBOLS.contains(character);
+    }
 
-   public static boolean yodle (char character){
-        return (character=='ъ'||character=='ы'||character=='ь');
-   }
+    public static boolean yodle(char character) {
+        return (character == 'ъ' || character == 'ы' || character == 'ь');
+    }
 }
