@@ -7,11 +7,11 @@ public class SymbolsCheck {//2 метода проверок на правиль
     public static boolean pairCheck(char symbol1, char symbol2) {
 
         if (Alphabet.symbolsContainCheck(symbol1) && symbol2 != ' ') return false;
-        else return symbol1 != ' ' || !Alphabet.yodle(symbol2);
+        else return true;
     }
 
     public static boolean trioCheck(char symbol1, char symbol2, char symbol3) {
 
-        return symbol1 != ' ' || symbol3 != ' ' || Alphabet.getOneLetterWords(symbol2);
+        return !(symbol1 == ' ' && Alphabet.yodle(symbol2) &&Alphabet.lettersContainCheck(symbol3));
     }
 }

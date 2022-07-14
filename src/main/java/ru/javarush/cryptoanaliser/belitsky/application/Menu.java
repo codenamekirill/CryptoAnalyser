@@ -15,7 +15,9 @@ public enum Menu {
     DECRYPT_STATISTIC,
     EXIT;
 
-
+public static long start = 0L;
+    public static long finish = 0L;
+    public static long time=finish-start;
     public static String source;
     public static String destination;
     public static final String SOMETHING_WENT_WRONG = "Ой, чтото пошло не так. :'(";
@@ -56,13 +58,13 @@ public enum Menu {
         while (true) {
             System.out.println(INPUT_SOURCE_ADRESS);
             Scanner scanner = new Scanner(System.in);
-            source = "c:\\test\\"+scanner.nextLine();
+            source = "k:\\"+scanner.nextLine();
             if (Files.notExists(Path.of(source))) {
                 System.out.println(SOMETHING_WENT_WRONG);
                 continue;
             }
             System.out.println(INPUT_DEST_ADRESS);
-            destination = "c:\\test\\"+scanner.nextLine();
+            destination = "k:\\"+scanner.nextLine();
 
 
             Path path = Path.of(destination);

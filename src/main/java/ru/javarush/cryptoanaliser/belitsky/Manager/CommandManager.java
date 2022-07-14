@@ -13,6 +13,7 @@ public class CommandManager {
     }
 
     public void runCommand() {
+
         switch (option) {
             case ENCRYPT -> RollWithKey.rollWithKey(Menu.source, Menu.destination, Menu.inputKey());
             case DECRYPT_WITH_KEY -> Decrypt.decryptWithKey(Menu.source, Menu.destination);

@@ -8,10 +8,16 @@ public class Application {
         while(true){
             Menu.printMenu();
             Menu menuChoise = Menu.menuNavigation();
-            if(menuChoise==Menu.EXIT)break;
+            if(menuChoise==Menu.EXIT){
+                System.out.println(Menu.END );
+                break;
+            }
             Menu.filePathCheck();
             CommandManager commandManager = new CommandManager(menuChoise);
+            long start=System.currentTimeMillis();
             commandManager.runCommand();
+            long finish=System.currentTimeMillis();
+            System.out.println(finish-start);
         }
     }
 

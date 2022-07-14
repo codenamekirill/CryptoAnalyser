@@ -5,12 +5,12 @@ import ru.javarush.cryptoanaliser.belitsky.alphabet.Alphabet;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class RollToCheck {//для того чтобы проверить первые 150 символов на расшифровку а не весь файл
+public class RollToCheck {//для того чтобы проверить первые 3000 символов на расшифровку а не весь файл
 
     public static int rollToCheck(String src) {
         try (FileReader input = new FileReader(src)) {
-
-            char[] buff = new char[150];
+            long start = System.currentTimeMillis();
+            char[] buff = new char[3000];
             int charSize = input.read(buff);
 
             for (int i = Alphabet.getSize() - 1; i > 0; i--) {
@@ -28,8 +28,13 @@ public class RollToCheck {//для того чтобы проверить пер
                     }
 
                 }
-                if (flag) return i;
+                if (flag) {
+                    System.out.println(System.currentTimeMillis()-start);
+                    return i;
+                }
+
             }
+
 
         } catch (IOException e) {
             throw new RuntimeException();
