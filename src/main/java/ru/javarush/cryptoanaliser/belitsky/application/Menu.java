@@ -1,7 +1,6 @@
 package ru.javarush.cryptoanaliser.belitsky.application;
 
-import ru.javarush.cryptoanaliser.belitsky.alphabet.Alphabet;
-import ru.javarush.cryptoanaliser.belitsky.alphabet.IsNumber;
+import ru.javarush.cryptoanaliser.belitsky.actions.Actions3;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,9 +14,9 @@ public enum Menu {
     DECRYPT_STATISTIC,
     EXIT;
 
-public static long start = 0L;
+    public static long start = 0L;
     public static long finish = 0L;
-    public static long time=finish-start;
+    public static long time = finish - start;
     public static String source;
     public static String destination;
     public static final String SOMETHING_WENT_WRONG = "Ой, чтото пошло не так. :'(";
@@ -41,7 +40,7 @@ public static long start = 0L;
             System.out.println(INPUT_COMMAND);
             Scanner scanner = new Scanner(System.in);
             String choise = scanner.nextLine();
-            if (IsNumber.isNumber(choise) && Integer.parseInt(choise) >= 0 && Integer.parseInt(choise) < Menu.values().length) {
+            if (Actions3.isNumber(choise) && Integer.parseInt(choise) >= 0 && Integer.parseInt(choise) < Menu.values().length) {
                 for (Menu value : Menu.values()) {
                     if (value.ordinal() == Integer.parseInt(choise)) return value;
                 }
@@ -58,13 +57,13 @@ public static long start = 0L;
         while (true) {
             System.out.println(INPUT_SOURCE_ADRESS);
             Scanner scanner = new Scanner(System.in);
-            source = "c:\\test\\"+scanner.nextLine();
+            source = "k:\\" + scanner.nextLine();
             if (Files.notExists(Path.of(source))) {
                 System.out.println(SOMETHING_WENT_WRONG);
                 continue;
             }
             System.out.println(INPUT_DEST_ADRESS);
-            destination = "c:\\test\\"+scanner.nextLine();
+            destination = "k:\\" + scanner.nextLine();
 
 
             Path path = Path.of(destination);
@@ -85,15 +84,14 @@ public static long start = 0L;
         }
     }
 
-    public static int inputKey (){
-        while (true){
+    public static int inputKey() {
+        while (true) {
             System.out.println(INPUT_KEY);
             Scanner scanner = new Scanner(System.in);
             String key = scanner.nextLine();
-            if (!IsNumber.isNumber(key)) {
+            if (!Actions3.isNumber(key)) {
                 System.out.println(SOMETHING_WENT_WRONG);
-            }
-            else return Integer.parseInt(key);
+            } else return Integer.parseInt(key);
         }
     }
 }

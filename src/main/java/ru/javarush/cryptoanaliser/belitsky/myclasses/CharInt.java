@@ -1,23 +1,16 @@
 package ru.javarush.cryptoanaliser.belitsky.myclasses;
 
-public class CharInt implements Comparable <CharInt>{
+public class CharInt implements Comparable<CharInt> {
     private Character symbol;
     private Integer symbolQuantity;
 
-    private Integer symbolPercentQuantity = 0;
-
-    public CharInt(Character symbol, Integer symbolQuantity/*Integer allSymbols*/){
-        this.symbol =symbol;
-        this.symbolQuantity =symbolQuantity;
-        //this.symbolPercentQuantity=allSymbols/this.symbolQuantity;
+    public CharInt(Character symbol, Integer symbolQuantity/*Integer allSymbols*/) {
+        this.symbol = symbol;
+        this.symbolQuantity = symbolQuantity;
     }
 
     public void setSymbol(Character symbol) {
         this.symbol = symbol;
-    }
-
-    public void setSymbolPercentQuantity(Integer symbolPercentQuantity) {
-        this.symbolPercentQuantity = symbolPercentQuantity;
     }
 
     public void setSymbolQuantity(Integer symbolQuantity) {
@@ -49,15 +42,17 @@ public class CharInt implements Comparable <CharInt>{
         return symbol;
     }
 
-    private int compare(CharInt first, CharInt second){
-        return  first.getSymbolQuantity()< second.getSymbolQuantity()?1:first.getSymbolQuantity()==second.getSymbolQuantity()?0:-1;}
+    private int compare(CharInt first, CharInt second) {
+        return first.getSymbolQuantity() < second.getSymbolQuantity() ? 1 : first.getSymbolQuantity() == second.getSymbolQuantity() ? 0 : -1;
+    }
+
     @Override
     public int compareTo(CharInt o) {
-        return compare(this,o);
+        return compare(this, o);
     }
 
     @Override
     public String toString() {
-        return   symbol + ", " + symbolQuantity +", "+symbolPercentQuantity+"%";
+        return symbol + ", " + symbolQuantity;
     }
 }
