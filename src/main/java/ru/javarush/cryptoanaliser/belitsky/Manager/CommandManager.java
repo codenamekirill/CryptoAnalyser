@@ -18,7 +18,7 @@ public class CommandManager {
             case ENCRYPT -> RollWithKey.rollWithKey(Menu.source, Menu.destination, Menu.inputKey());
             case DECRYPT_WITH_KEY -> Decrypt.decryptWithKey(Menu.source, Menu.destination);
             case DECRYPT_BRUTFORCE -> Decrypt.decryptBrutForce(Menu.source,Menu.destination);
-
+            case DECRYPT_STATISTIC -> Decrypt.decryptStatic("C:\\test\\fileorig.txt",Menu.source,Menu.destination);
             default -> throw new IllegalStateException("Unexpected value: " + option);
         }
     }

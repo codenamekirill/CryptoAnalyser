@@ -58,13 +58,13 @@ public static long start = 0L;
         while (true) {
             System.out.println(INPUT_SOURCE_ADRESS);
             Scanner scanner = new Scanner(System.in);
-            source = "k:\\"+scanner.nextLine();
+            source = "c:\\test\\"+scanner.nextLine();
             if (Files.notExists(Path.of(source))) {
                 System.out.println(SOMETHING_WENT_WRONG);
                 continue;
             }
             System.out.println(INPUT_DEST_ADRESS);
-            destination = "k:\\"+scanner.nextLine();
+            destination = "c:\\test\\"+scanner.nextLine();
 
 
             Path path = Path.of(destination);

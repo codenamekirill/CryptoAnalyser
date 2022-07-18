@@ -10,12 +10,17 @@ public class FinalTextWrite {//метод для записи файла с из
 
     public static void finalTextWrite(String src, String dest, int key) {
         try (FileReader input = new FileReader(src)) {
+            char[] buff = new char[5000];
             while (input.ready()) {
-                char symbol = Character.toLowerCase((char) input.read());
-                if (Alphabet.indexOf(symbol) == -1) continue;
-                int index = Alphabet.indexOf(symbol);
+                int buffSize = input.read(buff);
+
                 try (FileWriter output = new FileWriter(dest, true)) {
-                    output.write(Roll.roll(index, key));
+                    for (int i = 0; i < buffSize; i++) {
+                        char symbol = Character.toLowerCase(buff[i]);
+                        if (Alphabet.indexOf(symbol) == -1) continue;
+                        int index = Alphabet.indexOf(symbol);
+                        output.write(Roll.roll(index, key));
+                    }
                 }
             }
 

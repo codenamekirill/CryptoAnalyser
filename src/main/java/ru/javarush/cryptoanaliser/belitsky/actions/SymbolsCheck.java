@@ -6,7 +6,7 @@ public class SymbolsCheck {//2 метода проверок на правиль
 
     public static boolean pairCheck(char symbol1, char symbol2) {
 
-        if (Alphabet.symbolsContainCheck(symbol1) && symbol2 != ' ') return false;
+        if (Alphabet.symbolsToCheckContainCheck(symbol1) && symbol2 != ' ') return false;
         else return true;
     }
 
