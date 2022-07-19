@@ -1,8 +1,8 @@
-package ru.javarush.cryptoanaliser.belitsky.manager;
+package ru.javarush.cryptoanalyser.belitsky.manager;
 
-import ru.javarush.cryptoanaliser.belitsky.actions.Actions;
-import ru.javarush.cryptoanaliser.belitsky.actions.Actions2;
-import ru.javarush.cryptoanaliser.belitsky.application.Menu;
+import ru.javarush.cryptoanalyser.belitsky.actions.Actions;
+import ru.javarush.cryptoanalyser.belitsky.actions.Actions2;
+import ru.javarush.cryptoanalyser.belitsky.application.Menu;
 
 public class CommandManager {
 

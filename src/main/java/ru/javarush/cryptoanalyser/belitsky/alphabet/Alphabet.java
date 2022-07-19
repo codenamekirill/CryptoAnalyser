@@ -1,4 +1,4 @@
-package ru.javarush.cryptoanaliser.belitsky.alphabet;
+package ru.javarush.cryptoanalyser.belitsky.alphabet;
 
 
 import java.util.Arrays;

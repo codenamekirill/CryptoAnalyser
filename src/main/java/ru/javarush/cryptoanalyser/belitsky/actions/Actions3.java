@@ -1,7 +1,7 @@
-package ru.javarush.cryptoanaliser.belitsky.actions;
+package ru.javarush.cryptoanalyser.belitsky.actions;
 
-import ru.javarush.cryptoanaliser.belitsky.alphabet.Alphabet;
-import ru.javarush.cryptoanaliser.belitsky.myclasses.CharInt;
+import ru.javarush.cryptoanalyser.belitsky.alphabet.Alphabet;
+import ru.javarush.cryptoanalyser.belitsky.myclasses.CharInt;
 
 import java.io.FileReader;
 import java.io.IOException;

@@ -1,6 +1,6 @@
-package ru.javarush.cryptoanaliser.belitsky.actions;
+package ru.javarush.cryptoanalyser.belitsky.actions;
 
-import ru.javarush.cryptoanaliser.belitsky.application.Menu;
+import ru.javarush.cryptoanalyser.belitsky.application.Menu;
 
 import java.io.FileReader;
 import java.io.FileWriter;

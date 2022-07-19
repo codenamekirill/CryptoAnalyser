@@ -1,6 +1,6 @@
-package ru.javarush.cryptoanaliser.belitsky.application;
+package ru.javarush.cryptoanalyser.belitsky.application;
 
-import ru.javarush.cryptoanaliser.belitsky.manager.CommandManager;
+import ru.javarush.cryptoanalyser.belitsky.manager.CommandManager;
 
 public class Application {
 

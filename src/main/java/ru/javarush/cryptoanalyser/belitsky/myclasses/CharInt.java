@@ -1,4 +1,4 @@
-package ru.javarush.cryptoanaliser.belitsky.myclasses;
+package ru.javarush.cryptoanalyser.belitsky.myclasses;
 
 public class CharInt implements Comparable<CharInt> {
     private Character symbol;

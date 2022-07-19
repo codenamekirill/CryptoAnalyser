@@ -1,6 +1,6 @@
-package ru.javarush.cryptoanaliser.belitsky.application;
+package ru.javarush.cryptoanalyser.belitsky.application;
 
-import ru.javarush.cryptoanaliser.belitsky.actions.Actions3;
+import ru.javarush.cryptoanalyser.belitsky.actions.Actions3;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,10 +14,8 @@ public enum Menu {
     DECRYPT_STATISTIC,
     EXIT;
 
-    public static long start = 0L;
-    public static long finish = 0L;
-    public static long time = finish - start;
-    public static String source;
+
+    public static String source  /*System.getProperty("user.dir")*/;
     public static String destination;
     public static final String SOMETHING_WENT_WRONG = "Ой, чтото пошло не так. :'(";
     public static final String INPUT_SOURCE_ADRESS = "Введите адрес исходного файла : ";
@@ -57,26 +55,32 @@ public enum Menu {
         while (true) {
             System.out.println(INPUT_SOURCE_ADRESS);
             Scanner scanner = new Scanner(System.in);
-            source = "k:\\" + scanner.nextLine();
-            if (Files.notExists(Path.of(source))) {
+            source = scanner.nextLine();
+
+            if (source.equals(""))source = "text.txt";
+            Path pathSrc = Path.of(source);
+            if(!pathSrc.isAbsolute())pathSrc = Path.of(source).toAbsolutePath();
+            System.out.println(pathSrc);
+            if (Files.notExists(pathSrc)) {
                 System.out.println(SOMETHING_WENT_WRONG);
                 continue;
             }
             System.out.println(INPUT_DEST_ADRESS);
-            destination = "k:\\" + scanner.nextLine();
+            destination = scanner.nextLine();
+            if (destination.equals(""))destination = "text1.txt";
 
-
-            Path path = Path.of(destination);
-            if (Files.exists(path)) {
+            Path pathDest = Path.of(destination);
+            if(!pathDest.isAbsolute())pathDest = Path.of(destination).toAbsolutePath();
+            if (Files.exists(pathDest)) {
                 try {
-                    Files.delete(path);
+                    Files.delete(pathDest);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }
             try {
-                Files.createFile(path);
-                System.out.println(RESULT_AT + destination);
+                Files.createFile(pathDest);
+                System.out.println(RESULT_AT + pathDest);
                 break;
             } catch (IOException e) {
                 throw new RuntimeException(e);
