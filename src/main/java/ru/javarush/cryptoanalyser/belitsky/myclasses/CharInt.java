@@ -1,5 +1,9 @@
 package ru.javarush.cryptoanalyser.belitsky.myclasses;
 
+/**
+ * Класс создан для облегчения работы с парой символ его кол вхождений
+ * и сортировки по значению от большего к меньшему.
+ */
 public class CharInt implements Comparable<CharInt> {
     private Character symbol;
     private Integer symbolQuantity;

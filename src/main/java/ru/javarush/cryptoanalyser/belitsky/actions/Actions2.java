@@ -12,10 +12,12 @@ import java.util.HashMap;
 public class Actions2 {
 
     /**
-     * @param src
-     * @param dest
-     * @param key
-     * Метод крутит алфавит с ключом сделать приватным реализация зашифровки
+     * @param src file source adress
+     * @param dest file destination adress
+     * @param key key.
+     *
+     * Rolls the alphabet letters with key.
+     * Writes the text to destination file
      */
     public static void rollWithKey(String src, String dest, int key) {
         try (FileReader input = new FileReader(src)) {
@@ -35,7 +37,7 @@ public class Actions2 {
         }
     }
 
-    public static char roll(int index, int key) {
+    private static char roll(int index, int key) {
         if (index + key < 0) index += Alphabet.getSize();
         return Alphabet.get((index + key) % Alphabet.getSize());
     }
@@ -49,15 +51,19 @@ public class Actions2 {
         }
     }
 
+    /**
+     * @param src file source adress
+     * @return key to roll the alphabet.
+     * Created to find key at first 3000 symbols.
+     * returns -1 if the key not found
+     */
     public static int rollToCheck(String src) {
         try (FileReader input = new FileReader(src)) {
-            long start = System.currentTimeMillis();
             char[] buff = new char[3000];
             int charSize = input.read(buff);
             for (int i = Alphabet.getSize() - 1; i > 0; i--) {
                 boolean flag = true;
                 for (int j = 0; j < charSize - 2; j++) {
-                    if(i==29) System.out.println(j);
                     char symbol1 = roll(Alphabet.indexOf(buff[j]), i);
                     char symbol2 = roll(Alphabet.indexOf(buff[j + 1]), i);
                     char symbol3 = roll(Alphabet.indexOf(buff[j + 2]), i);
@@ -70,7 +76,6 @@ public class Actions2 {
                     }
                 }
                 if (flag) {
-                    System.out.println(System.currentTimeMillis() - start);
                     return i;
                 }
             }
@@ -80,6 +85,12 @@ public class Actions2 {
         return -1;
     }
 
+    /**
+     * @param srcOrig file source original file adress
+     * @param src file source  adress
+     * @return HashMap with: key = character form the encrypted source,
+     * value = character from original source. key and value stats equal
+     */
     public static HashMap<Character, Character> charsToChange(String srcOrig, String src) {
 
         try (FileReader inputOrig = new FileReader(srcOrig);

@@ -1,19 +1,16 @@
 package ru.javarush.cryptoanalyser.belitsky.actions;
 
+import ru.javarush.cryptoanalyser.belitsky.alphabet.Alphabet;
 import ru.javarush.cryptoanalyser.belitsky.application.Menu;
 
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class Actions {
+public class mainActions {
 
 
-    /**
-     * @param src
-     * @param dest метод расшифровывает брутфорсом
-     */
+
     public static void decryptBrutForce(String src, String dest) {
         int key;
         if ((key = Actions2.rollToCheck(src)) == -1) {
@@ -22,33 +19,23 @@ public class Actions {
         }
         Actions2.rollWithKey(src, dest, key);
     }
-
-    /**
-     * @param src
-     * @param dest метод рсшифровки с ключом
-     */
     public static void decryptWithKey(String src, String dest) {
         int key = Menu.inputKey();
         Actions2.rollWithKey(src, dest, (key * -1));
     }
-
-    /**
-     * @param srcOrig
-     * @param src
-     * @param dest    статистическая расшифровка
-     */
     public static void decryptStatic(String srcOrig, String src, String dest) {
         HashMap<Character, Character> charsToChange = Actions2.charsToChange(srcOrig, src);
-        System.out.println(charsToChange);
         try (FileReader input = new FileReader(src)) {
             char[] buff = new char[5000];
             while (input.ready()) {
                 int buffSize = input.read(buff);
-                try (FileWriter output = new FileWriter(dest, true)) {
-                    for (int i = 0; i < buffSize; i++) {
-                        output.write(charsToChange.get(buff[i]));
-                    }
+                char[] buffToWrite = new char[buffSize];
+                for (int i = 0,j=0; i < buffSize; i++) {
+                    char symbol = Character.toLowerCase(buff[i]);
+                    if (Alphabet.alphabetContainsCheck(symbol))
+                        buffToWrite[j++]=charsToChange.get(symbol);
                 }
+                Actions2.finalTextWrite(dest,buffToWrite);
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());

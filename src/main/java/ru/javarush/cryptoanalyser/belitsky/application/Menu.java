@@ -8,22 +8,22 @@ import java.nio.file.Path;
 import java.util.Scanner;
 
 public enum Menu {
-    ENCRYPT,
-    DECRYPT_WITH_KEY,
-    DECRYPT_BRUTFORCE,
-    DECRYPT_STATISTIC,
-    EXIT;
+    ENCRYPT, DECRYPT_WITH_KEY, DECRYPT_BRUTFORCE, DECRYPT_STATISTIC, EXIT;
 
 
-    public static String source  /*System.getProperty("user.dir")*/;
+    public static String source;
     public static String destination;
+    public static String origDestination;
+    public static final String standartDestination = "text1.txt";
+    public static final String standartSource = "text.txt";
+    public static final String standartOrig = "textOrig.txt";
     public static final String SOMETHING_WENT_WRONG = "Ой, чтото пошло не так. :'(";
-    public static final String INPUT_SOURCE_ADRESS = "Введите адрес исходного файла : ";
-    public static final String INPUT_DEST_ADRESS = "Введите адреc результата, если его не существует он будет создан : ";
+    public static final String INPUT_SOURCE_ADRESS = "Введите адрес исходного файла или ENTER, по умолчанию "+standartSource+" : ";
+    public static final String INPUT_DEST_ADRESS = "Введите адреc результата, если его не существует он будет создан или ENTER, по умолчанию "+standartDestination+" : ";
+    public static final String INPUT_ORIG_ADRESS = "Введите адрес оригинального текста для подсчета статистики или ENTER, по умолчанию "+standartOrig+" : ";
     public static final String INPUT_COMMAND = "Введите команду или ее номер в строку : ";
     public static final String INPUT_KEY = "Введите ключ : ";
     public static final String RESULT_AT = "Результат находится по адресу ";
-
     public static final String END = "Программа завершена";
 
     public static void printMenu() {
@@ -51,26 +51,26 @@ public enum Menu {
         }
     }
 
-    public static void filePathCheck() {
-        while (true) {
-            System.out.println(INPUT_SOURCE_ADRESS);
-            Scanner scanner = new Scanner(System.in);
-            source = scanner.nextLine();
+    private static Path pathAsk(String message, String standart) {
+        System.out.println(message);
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        if (input.equals("")) input = standart;
+        Path path = Path.of(input);
+        if (!path.isAbsolute()) path = Path.of(input).toAbsolutePath();
+        return path;
+    }
 
-            if (source.equals(""))source = "text.txt";
-            Path pathSrc = Path.of(source);
-            if(!pathSrc.isAbsolute())pathSrc = Path.of(source).toAbsolutePath();
-            System.out.println(pathSrc);
+    public static void filePathCheck(Menu menuChoise) {
+        while (true) {
+            Path pathSrc = pathAsk(INPUT_SOURCE_ADRESS, standartSource);
+            source = String.valueOf(pathSrc);
             if (Files.notExists(pathSrc)) {
                 System.out.println(SOMETHING_WENT_WRONG);
                 continue;
             }
-            System.out.println(INPUT_DEST_ADRESS);
-            destination = scanner.nextLine();
-            if (destination.equals(""))destination = "text1.txt";
-
-            Path pathDest = Path.of(destination);
-            if(!pathDest.isAbsolute())pathDest = Path.of(destination).toAbsolutePath();
+            Path pathDest = pathAsk(INPUT_DEST_ADRESS, standartDestination);
+            destination = String.valueOf(pathDest);
             if (Files.exists(pathDest)) {
                 try {
                     Files.delete(pathDest);
@@ -80,13 +80,24 @@ public enum Menu {
             }
             try {
                 Files.createFile(pathDest);
-                System.out.println(RESULT_AT + pathDest);
-                break;
+                if (menuChoise.equals(Menu.DECRYPT_STATISTIC)) {
+                    while(true){
+                        Path origSrc = pathAsk(INPUT_ORIG_ADRESS, standartOrig);
+                        origDestination = String.valueOf(origSrc);
+                        if (Files.notExists(origSrc)) {
+                            System.out.println(SOMETHING_WENT_WRONG);
+                            continue;
+                        }
+                        break;
+                    }
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            break;
         }
     }
+
 
     public static int inputKey() {
         while (true) {

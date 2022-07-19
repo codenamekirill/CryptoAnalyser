@@ -12,11 +12,10 @@ public class Application {
                 System.out.println(Menu.END);
                 break;
             }
-            Menu.filePathCheck();
+            Menu.filePathCheck(menuChoise);
             CommandManager commandManager = new CommandManager(menuChoise);
             commandManager.runCommand();
+            System.out.println(Menu.RESULT_AT + Menu.destination);
         }
     }
-
-
 }
